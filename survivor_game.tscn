@@ -21,6 +21,13 @@ layer = -30
 offset_right = 1949.0
 offset_bottom = 1095.0
 
+[node name="ScoreLabel" type="Label" parent="CanvasLayer"]
+unique_name_in_owner = true
+modulate = Color(0, 0, 0, 1)
+offset_right = 284.0
+offset_bottom = 78.0
+theme_override_font_sizes/font_size = 60
+
 [node name="Player" parent="." instance=ExtResource("1_r1385")]
 position = Vector2(989, 518)
 
