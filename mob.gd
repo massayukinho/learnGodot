@@ -5,6 +5,7 @@ var health = 3
 
 @onready var player = get_node("/root/Game/Player")
 
+# Criar Signal e Emitir quando o Mob Morrer.
 
 func _ready() -> void:
 	%Slime.play_walk()
