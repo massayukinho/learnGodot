@@ -17,6 +17,7 @@ shape = SubResource("CircleShape2D_iuh01")
 [node name="PistolPivot" type="Marker2D" parent="."]
 
 [node name="Pistol" type="Sprite2D" parent="PistolPivot"]
+unique_name_in_owner = true
 position = Vector2(80, -9)
 texture = ExtResource("1_3if8s")
 
