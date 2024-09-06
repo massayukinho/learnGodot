@@ -25,8 +25,8 @@ texture = ExtResource("1_3if8s")
 unique_name_in_owner = true
 position = Vector2(25, -11)
 
-[node name="Timer" type="Timer" parent="."]
+[node name="ShootTimer" type="Timer" parent="."]
+unique_name_in_owner = true
 wait_time = 0.3
-autostart = true
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="ShootTimer" to="." method="_on_timer_timeout"]

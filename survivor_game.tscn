@@ -31,8 +31,35 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 80
 text = "Score: 0"
 
+[node name="StartButton" type="Button" parent="HUD"]
+unique_name_in_owner = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -285.0
+offset_top = -78.0
+offset_right = 285.0
+offset_bottom = 78.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 80
+text = "Start"
+
+[node name="RoundCounter" type="Label" parent="HUD"]
+unique_name_in_owner = true
+visible = false
+offset_top = 100.0
+offset_right = 340.0
+offset_bottom = 210.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 80
+text = "Round: 0"
+
 [node name="Player" parent="." instance=ExtResource("1_r1385")]
 position = Vector2(989, 518)
+platform_floor_layers = 4294967040
 
 [node name="Path2D" type="Path2D" parent="Player"]
 position = Vector2(-989, -518)
@@ -64,9 +91,14 @@ position = Vector2(873, 974)
 [node name="PineTree7" parent="." instance=ExtResource("2_tn4nh")]
 position = Vector2(1827, 152)
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 0.3
-autostart = true
+[node name="RoundTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 10.0
+one_shot = true
+
+[node name="SpawnTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.9
 
 [node name="GameOver" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
@@ -96,5 +128,7 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 156
 text = "Game Over"
 
+[connection signal="button_down" from="HUD/StartButton" to="." method="_on_start_button_button_down"]
 [connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="RoundTimer" to="." method="_on_round_timer_timeout"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timeout"]

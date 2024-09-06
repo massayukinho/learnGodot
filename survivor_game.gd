@@ -5,6 +5,8 @@ extends Node2D
 # sempre que o score é atualizado
 
 var score = 0
+var kill_points = 10
+var round_count = 0
 
 func spawn_mob():
 	var new_mob = preload("res://mob.tscn").instantiate()
@@ -14,7 +16,7 @@ func spawn_mob():
 	# Se inscrever no signal de quando o mob morre.
 	new_mob.killed.connect(_on_killed.bind())
 
-func _on_timer_timeout() -> void:
+func _on_spawn_timeout() -> void:
 	spawn_mob()
 
 
@@ -26,5 +28,24 @@ func update_score():
 	%ScoreLabel.text = "Score: " + str(score)
 	
 func _on_killed() -> void:
-	score += 10
+	score += kill_points
 	update_score()
+
+func _on_round_timer_timeout() -> void:
+	%SpawnTimer.stop()
+	%SpawnTimer.wait_time = %SpawnTimer.wait_time * 0.95
+	%RoundTimer.wait_time = %RoundTimer.wait_time * 1.05
+	kill_points += 5
+	%StartButton.text = "Start next round"
+	%StartButton.visible = true
+	%StartButton.disabled = false
+
+func _on_start_button_button_down() -> void:
+	round_count += 1
+	%RoundCounter.text = "Round: " + str(round_count)
+	if %RoundCounter.visible == false:
+		%RoundCounter.visible = true
+	%StartButton.visible = false
+	%StartButton.disabled = true
+	%SpawnTimer.start()
+	%RoundTimer.start()

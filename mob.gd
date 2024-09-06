@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var health = 1
+var health = 3
 
 signal killed
 @onready var player = get_node("/root/Game/Player")
