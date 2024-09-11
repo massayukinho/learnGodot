@@ -3,6 +3,7 @@ extends CharacterBody2D
 var health = 3
 
 signal killed
+signal lastmobkilled
 @onready var player = get_node("/root/Game/Player")
 
 # Criar Signal e Emitir quando o Mob Morrer.
@@ -24,6 +25,9 @@ func take_damage():
 	if health == 0:
 		killed.emit()
 		queue_free()
+		
+		if get_node("/root/Game").find_children("Slime", "" , true, false).size() < 2:
+			lastmobkilled.emit()
 		
 		const SMOKE_SCENE = preload("res://smoke_explosion/smoke_explosion.tscn")
 		var smoke = SMOKE_SCENE.instantiate()
