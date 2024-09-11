@@ -37,8 +37,6 @@ func _on_round_timer_timeout() -> void:
 	%SpawnTimer.wait_time = %SpawnTimer.wait_time * 0.95
 	%RoundTimer.wait_time = %RoundTimer.wait_time * 1.05
 	%StartButton.text = "Start round " + str(round_count + 1)
-	%StartButton.visible = true
-	%StartButton.disabled = false
 
 func _on_start_button_button_down() -> void:
 	round_count += 1
