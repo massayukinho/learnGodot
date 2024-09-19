@@ -10,8 +10,11 @@ var round_count = 0
 
 func spawn_mob():
 	var new_mob = preload("res://mob.tscn").instantiate()
-	%PathFollow2D.progress_ratio = randf()
-	new_mob.global_position = %PathFollow2D.global_position
+	#%PathFollow2D.progress_ratio = randf()
+	#new_mob.global_position = %PathFollow2D.global_position
+	new_mob.global_position = Vector2(randi_range(-200, 2100), randi_range(-600, 1700))
+	while new_mob.global_position.x < %Player.global_position.x + 960 and new_mob.global_position.x > %Player.global_position.x - 960 and new_mob.global_position.y < %Player.global_position.y + 540 and new_mob.global_position.y > %Player.global_position.y - 540:
+			new_mob.global_position = Vector2(randi_range(-200, 2100), randi_range(-600, 1700))
 	add_child(new_mob)
 	# Se inscrever no signal de quando o mob morre.
 	new_mob.killed.connect(_on_killed.bind())

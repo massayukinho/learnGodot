@@ -1,12 +1,25 @@
-[gd_scene load_steps=5 format=3 uid="uid://dbi6pod3wvr5r"]
+[gd_scene load_steps=10 format=3 uid="uid://dbi6pod3wvr5r"]
 
 [ext_resource type="Script" path="res://survivor_game.gd" id="1_cnx1w"]
 [ext_resource type="PackedScene" uid="uid://4dxic03623oo" path="res://player.tscn" id="1_r1385"]
 [ext_resource type="PackedScene" uid="uid://cuoe0krjui5de" path="res://pine_tree.tscn" id="2_tn4nh"]
+[ext_resource type="Texture2D" uid="uid://c43fvurkc2nor" path="res://Godot Game Area.png" id="4_74sjb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x2s3u"]
+size = Vector2(2500, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7g1ov"]
+size = Vector2(2500, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rafd5"]
+size = Vector2(10, 2500)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dbt56"]
+size = Vector2(10, 2500)
 
 [sub_resource type="Curve2D" id="Curve2D_7ud7u"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -173, -314, 0, 0, 0, 0, 2165, -304, 0, 0, 0, 0, 2161, 1237, 0, 0, 0, 0, -193, 1237, 0, 0, 0, 0, -173, -310)
+"points": PackedVector2Array(0, 0, 0, 0, -231, -694, 0, 0, 0, 0, 2150.25, -682.795, 0, 0, 0, 0, 2163.04, 1748.88, 0, 0, 0, 0, -227.077, 1761.83, 0, 0, 0, 0, -231, -686.033)
 }
 point_count = 5
 
@@ -14,12 +27,45 @@ point_count = 5
 y_sort_enabled = true
 script = ExtResource("1_cnx1w")
 
+[node name="GameArea" type="StaticBody2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+z_index = 4096
+position = Vector2(960, 540)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameArea"]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(0, -1250)
+shape = SubResource("RectangleShape2D_x2s3u")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="GameArea"]
+modulate = Color(0, 0, 0, 1)
+z_index = 4096
+position = Vector2(0, 1250)
+shape = SubResource("RectangleShape2D_7g1ov")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="GameArea"]
+modulate = Color(0, 0, 0, 1)
+z_index = 4096
+position = Vector2(1250, 0)
+shape = SubResource("RectangleShape2D_rafd5")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="GameArea"]
+modulate = Color(0, 0, 0, 1)
+z_index = 4096
+position = Vector2(-1250, 0)
+shape = SubResource("RectangleShape2D_dbt56")
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -30
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-offset_right = 1949.0
-offset_bottom = 1095.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
@@ -57,39 +103,41 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 80
 text = "Round: 0"
 
-[node name="Player" parent="." instance=ExtResource("1_r1385")]
-position = Vector2(989, 518)
-platform_floor_layers = 4294967040
-
-[node name="Path2D" type="Path2D" parent="Player"]
-position = Vector2(-989, -518)
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(3.85614, 34.3325)
+scale = Vector2(1.01669, 0.981747)
 curve = SubResource("Curve2D_7ud7u")
 
-[node name="PathFollow2D" type="PathFollow2D" parent="Player/Path2D"]
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
 unique_name_in_owner = true
-position = Vector2(-173, -314)
-rotation = 0.00427713
+position = Vector2(-231, -694)
+rotation = 0.00470548
+
+[node name="Player" parent="." instance=ExtResource("1_r1385")]
+unique_name_in_owner = true
+position = Vector2(960, 540)
+platform_floor_layers = 4294967040
 
 [node name="PineTree" parent="." instance=ExtResource("2_tn4nh")]
 position = Vector2(526, 737)
 
 [node name="PineTree2" parent="." instance=ExtResource("2_tn4nh")]
-position = Vector2(1318, 835)
+position = Vector2(2199, 1743)
 
 [node name="PineTree3" parent="." instance=ExtResource("2_tn4nh")]
 position = Vector2(1498, 383)
 
 [node name="PineTree4" parent="." instance=ExtResource("2_tn4nh")]
-position = Vector2(354, 409)
+position = Vector2(-203, -652)
 
 [node name="PineTree5" parent="." instance=ExtResource("2_tn4nh")]
 position = Vector2(716, 222)
 
 [node name="PineTree6" parent="." instance=ExtResource("2_tn4nh")]
-position = Vector2(873, 974)
+position = Vector2(-211, 1770)
 
 [node name="PineTree7" parent="." instance=ExtResource("2_tn4nh")]
-position = Vector2(1827, 152)
+position = Vector2(2182, -602)
 
 [node name="RoundTimer" type="Timer" parent="."]
 unique_name_in_owner = true
@@ -127,6 +175,10 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 156
 text = "Game Over"
+
+[node name="GodotGameArea" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+texture = ExtResource("4_74sjb")
 
 [connection signal="button_down" from="HUD/StartButton" to="." method="_on_start_button_button_down"]
 [connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]
